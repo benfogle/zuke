@@ -1,0 +1,38 @@
+[package]
+name = "zuke"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = "1"
+inventory = "0.1"
+anyhow = { version = "1", features = ["backtrace"] }
+futures = "0.3"
+gherkin_rust = "0.10"
+chrono = "0.4"
+async-std = { version = "1", features = ["unstable"] }
+lazy_static = "1"
+async-broadcast = "0.3"
+regex = "1"
+parking_lot = "0.11"
+async-trait = "0.1"
+clap = "2"
+textwrap = "0.14"
+ctrlc = "3"
+
+zuke-macros = { version = "0.1.0", path = "../zuke-macros" }
+
+[dev-dependencies]
+shell-words = "1.0"
+
+[features]
+default = [ "tags", "fixtures" ]
+tags = []
+fixtures = []
+tokio1 = [ "async-std/tokio1" ]
+tokio03 = [ "async-std/tokio03" ]
+tokio02 = [ "async-std/tokio02" ]
+
+[[test]]
+name = "main"
+harness = false

@@ -1,0 +1,20 @@
+WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
+
+tag_expr = { SOI ~ expr ~ EOI }
+
+expr = {
+    primary ~ ( op ~ primary )*
+}
+
+op = _{ and | or }
+and = { "and" }
+or = { "or" }
+invert = { "not" ~ primary }
+primary = {
+    tag |
+    tag_u |
+    "(" ~ expr ~ ")" |
+    invert
+}
+tag = @{ "@" ~ ( !(WHITESPACE | "(" | ")" | "@" ) ~ ANY )+ }
+tag_u = @{ "@@" ~ ( !(WHITESPACE | "(" | ")" | "@" ) ~ ANY )+ }
