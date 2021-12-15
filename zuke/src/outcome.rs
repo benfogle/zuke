@@ -30,7 +30,7 @@ pub struct Outcome {
 }
 
 /// A summary of how many things passed/failed/skipped.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub struct Stat {
     /// number of passing components
     pub passed: usize,
@@ -40,17 +40,6 @@ pub struct Stat {
     pub skipped: usize,
     /// total number of components
     pub total: usize,
-}
-
-impl Default for Stat {
-    fn default() -> Self {
-        Stat {
-            passed: 0,
-            failed: 0,
-            skipped: 0,
-            total: 0,
-        }
-    }
 }
 
 /// The ultimate verdict for a test component. These are ordered from lowest priority (Skipped) to
